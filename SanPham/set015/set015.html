@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set quà Vẹn Tròn Nghĩa Tình - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cream">
+
+    <header style="padding: 20px 50px; background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;">
+        <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: bold; color: var(--dark-green);">
+            <a href="../../index.html" style="text-decoration: none; color: inherit;">Vòng Tròn Xanh</a>
+        </div>
+        <nav>
+            <a href="../../products.html" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">← Quay lại danh sách</a>
+        </nav>
+    </header>
+
+    <section class="section-padding container">
+        <div class="product-detail-grid">
+            
+            <div class="product-gallery">
+                <img id="mainImage" src="anh001.jpg" alt="Khăn Lụa Tơ Tằm Thượng Hạng" class="main-img">
+                
+                <div class="thumbnail-list">
+                    <img src="anh001.jpg" class="thumb active" onclick="changeImage(this)">
+                    <img src="anh002.jpg" class="thumb" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <div class="product-info-detail">
+                <div class="product-meta">
+                    <span class="product-code">Mã: VTX-012</span>
+                </div>
+                
+                <h1 class="detail-title">Set Vẹn Tròn Nghĩa Tình</h1>
+                <p class="detail-price">xxx.000 ₫</p>
+                
+                <div class="detail-description">
+                    <p>Dành cho những "nàng thơ" yêu sự lãng mạn. Sắc hồng của vỏ hộp cùng hương thơm dìu dịu và thỏi son môi rạng rỡ sẽ là lời tỏ tình ngọt ngào nhất cho mùa lễ này.</p>
+                    <ul>
+                        <li><strong>Lọ thơm phòng:</strong> Hương thơm tinh tế, nhẹ nhàng kèm keo cắm khếch tán hương thơm. Phù hợp cho Phòng ngủ, phòng khách và ngay cả trong oto của bạn.</li>                 
+                        <li><strong>Nhộng tơ:</strong> Một gói nhộng tơ, được sử dụng như đầu lót ngón tay, giúp bạn phục vụ làm sạch da mặt, nhẹ nhàng, dịu nhẹ với da mặt.</li>     
+                        <li><strong>Khăn:</strong> Khăn Latin in chất lượng cao, kích thước 70x70 cm, dễ dàng phối đồ và sử dụng hàng ngày.</li>                 
+                        <li><strong>Đóng gói:</strong>Thiệp nghệ thuật đồng bộ. Hộp quà màu Hồng nữ tính điệu đà, kèm thiệp viết tay và túi đựng sang trọng, đồng bộ màu sắc, phù hợp tặng ngày 8/3.</li>
+                    </ul>
+                </div>
+
+                <div class="detail-actions">
+                    <a href="https://zalo.me/0976152886" target="_blank" class="btn btn-primary btn-large">💬 Đặt Hàng Qua Zalo</a>
+                    <p class="support-text">Hoặc gọi Hotline: <strong>097 615 28 86</strong></p>
+                </div>
+                
+                <div class="guarantee-box">
+                    <p>✨ <strong>Cam kết từ Vòng Tròn Xanh:</strong></p>
+                    <p>✔️ Giao hàng hỏa tốc nội thành Hà Nội.</p>
+                    <p>✔️ Xem hàng trước khi thanh toán.</p>
+                    <p>✔️ Đổi trả miễn phí nếu sản phẩm không đúng mô tả.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="background: var(--dark-green); color: white; text-align: center; padding: 20px;">
+        <p>© 2026 Vòng Tròn Xanh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hàm thay đổi ảnh lớn khi click vào ảnh nhỏ
+        function changeImage(element) {
+            // Đổi nguồn ảnh chính
+            document.getElementById('mainImage').src = element.src;
+            // Cập nhật viền cho ảnh nhỏ đang được chọn
+            let thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+    <script src="../../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Sưu Tập Cài Áo Cao Cấp - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= GIAO DIỆN TRIỂN LÃM ẢNH (GALLERY) ================= */
+        .gallery-header {
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .gallery-desc {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* Lưới hiển thị ảnh */
+        .brooch-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 50px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brooch-item {
+            overflow: hidden;
+            border-radius: 8px; 
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            background: #fff;
+        }
+
+        .brooch-img-wrap {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; 
+        }
+
+        .brooch-img-wrap img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .brooch-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(47, 79, 61, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .brooch-item:hover .hover-overlay {
+            opacity: 1;
+        }
+
+        .zoom-icon {
+            color: white;
+            font-size: 2rem;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .brooch-item:hover .zoom-icon {
+            transform: translateY(0);
+        }
+
+        /* ================= LIGHTBOX (Giữ nguyên kích thước thực tế) ================= */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            z-index: 9999;
+            display: flex;
+            overflow: auto; /* Cho phép cuộn nếu ảnh to hơn màn hình */
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            padding: 40px; /* Tránh ảnh chạm mép màn hình */
+            box-sizing: border-box;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-img {
+            /* Loại bỏ max-width và max-height để hiển thị đúng size pixel gốc */
+            width: auto;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            margin: auto; /* Giúp ảnh căn giữa và không bị cắt góc khi cuộn */
+            border-radius: 4px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease; /* Bỏ hiệu ứng zoom, chỉ giữ hiệu ứng hiện rõ dần */
+        }
+
+        .lightbox.active .lightbox-img {
+            opacity: 1;
+        }
+
+        .lightbox-close {
+            position: fixed; /* Nổi cố định không bị trôi khi kéo cuộn ảnh */
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-family: sans-serif;
+            font-weight: 300;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            color: #d4af37;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .brooch-gallery { padding: 20px 20px 60px; gap: 15px; grid-template-columns: repeat(2, 1fr); }
+            .gallery-title { font-size: 2.2rem; }
+            .lightbox { padding: 20px; }
+            .lightbox-close { top: 15px; right: 20px; font-size: 2rem; }
+        }
+    </style>
+</head>
+<body class="bg-cream">
+
+    <header style="padding: 20px 50px; background: transparent; display: flex; justify-content: space-between; align-items: center; position: absolute; width: 100%; top: 0; z-index: 1000;">
+        <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: bold; color: var(--dark-green);">
+            <a href="index.html" style="text-decoration: none; color: inherit;">Vòng Tròn Xanh</a>
+        </div>
+        <nav>
+            <a href="index.html" style="text-decoration: none; color: var(--dark-green); font-weight: 500;">← Về trang chủ</a>
+        </nav>
+    </header>
+
+    <section class="gallery-header" style="margin-top: 60px;">
+        <h1 class="gallery-title">Điểm Xuyết Ánh Nhìn</h1>
+        <p class="gallery-desc">Khám phá bộ sưu tập cài áo thủ công tinh xảo. Mỗi chi tiết là một tác phẩm nghệ thuật, tôn vinh khí chất thanh lịch và sự duyên dáng của phái đẹp.</p>
+    </section>
+
+    <section class="brooch-gallery">
+        
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh001.jpg" alt="Cài áo cao cấp">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh002.jpg" alt="Cài áo đính đá">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh003.jpg" alt="Cài áo nghệ thuật">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh004.jpg" alt="Cài áo ngọc trai">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh005.png" alt="Cài áo vintage">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh006.png" alt="Cài áo pha lê">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh006.jpg" alt="Cài áo sang trọng">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh008.jpg" alt="Cài áo thủ công">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+        
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh009.jpg" alt="Cài áo cao cấp">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh010.jpg" alt="Cài áo đính đá">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+    
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh011.jpg" alt="Cài áo nghệ thuật">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh012.jpg" alt="Cài áo ngọc trai">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh013.jpg" alt="Cài áo vintage">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh014.jpg" alt="Cài áo pha lê">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh015.jpg" alt="Cài áo sang trọng">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh016.jpg" alt="Cài áo thủ công">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>        
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh017.jpg" alt="Cài áo cao cấp">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh018.jpg" alt="Cài áo đính đá">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh019.jpg" alt="Cài áo nghệ thuật">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh020.jpg" alt="Cài áo ngọc trai">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh021.jpg" alt="Cài áo vintage">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh022.jpg" alt="Cài áo pha lê">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh023.jpg" alt="Cài áo sang trọng">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh024.jpg" alt="Cài áo thủ công">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh025.jpg" alt="Cài áo thủ công">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh027.jpg" alt="Cài áo thủ công">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+        <div class="brooch-item" onclick="openLightbox(this)">
+            <div class="brooch-img-wrap">
+                <img src="SanPham/caiaocaocap/anh028.jpg" alt="Cài áo thủ công">
+                <div class="hover-overlay"><span class="zoom-icon">🔍</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="imageLightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Hiển thị gốc" class="lightbox-img" id="lightboxImg">
+    </div>
+    
+    <section class="consultation-section">
+        <h2 class="consultation-text">Bạn đã tìm thấy điểm nhấn hoàn hảo cho riêng mình?</h2>
+        <p style="color: var(--text-light); margin-bottom: 30px; font-style: italic;">Hãy để Vòng Tròn Xanh giúp bạn chọn lựa mẫu cài áo phù hợp nhất với khí chất của bạn.</p>
+        
+        <a href="https://www.facebook.com/VONGTRONXANH1AAOSEN/photos?locale=vi_VN" target="_blank" class="btn-consult" style="background: var(--dark-green); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: background 0.3s;">
+            Nhắn Tin Fanpage Để Tư Vấn Thêm
+        </a>
+    </section>
+
+    <footer style="background: var(--dark-green); color: white; text-align: center; padding: 20px;">
+        <p>© 2026 Vòng Tròn Xanh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            
+            // Tắt cuộn trang web chính, nhường thanh cuộn cho Lightbox
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target.id === 'imageLightbox' || event.target.className === 'lightbox-close') {
+                const lightbox = document.getElementById('imageLightbox');
+                lightbox.classList.remove('active');
+                
+                // Mở lại cuộn trang chính
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chanh Sành - Set quà An Thương Khoẻ | Vòng Tròn Xanh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #4A7C59;
+            --dark-green: #2F4F3D;
+            --light-green: #E8F3E8;
+            --cream: #F9F7F2;
+            --gold: #B89645;
+            --text-dark: #333333;
+            --text-light: #555555;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Be Vietnam Pro', sans-serif; color: var(--text-dark); background-color: var(--cream); line-height: 1.7; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--dark-green); }
+        img { max-width: 100%; display: block; }
+
+        /* Header */
+        header { background: #fff; padding: 20px 50px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; text-align: center; }
+        header a { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--dark-green); text-decoration: none; }
+
+        /* --- HERO SECTION & GALLERY (Phần thay đổi chính) --- */
+        .hero {
+            display: flex;
+            /* Căn chỉnh lên trên để text không bị lọt thỏm nếu gallery dài */
+            align-items: flex-start; 
+            justify-content: space-between;
+            padding: 60px 8vw;
+            background: var(--light-green);
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 0.8; /* Chiếm 40% chiều rộng */
+            position: sticky; /* Giữ text trôi theo khi cuộn trang (trên desktop) */
+            top: 100px;
+        }
+
+        .hero-text h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 20px; }
+        .hero-text .subtitle { font-size: 1.2rem; color: var(--primary-green); font-weight: 500; margin-bottom: 20px; display: block; }
+
+        .hero-gallery {
+            flex: 1.2; /* Chiếm 60% chiều rộng để chứa 6 ảnh */
+        }
+
+        /* Thiết lập lưới 3 cột cho ảnh */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        /* Style cho từng ảnh trong lưới */
+        .gallery-item {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Tự động cắt ảnh thành hình vuông */
+            object-fit: cover; /* Đảm bảo ảnh không bị méo */
+            border-radius: 12px;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 15px rgba(47, 79, 61, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Hiệu ứng khi di chuột vào ảnh */
+        .gallery-item:hover {
+            transform: scale(1.03); /* Phóng to nhẹ */
+            box-shadow: 0 10px 25px rgba(47, 79, 61, 0.2);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* --- Các phần khác giữ nguyên --- */
+        .story-section { padding: 80px 10vw; text-align: center; background: #fff; }
+        .story-box { max-width: 800px; margin: 0 auto; padding: 40px; background: var(--cream); border-left: 4px solid var(--gold); border-radius: 8px; font-size: 1.1rem; font-style: italic; color: var(--text-light); }
+        .grid-section { padding: 80px 10vw; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; position: relative; }
+        .section-title::after { content: '✿'; display: block; color: var(--gold); font-size: 1.5rem; margin-top: 10px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border-top: 4px solid var(--primary-green); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--dark-green); display: flex; align-items: center; gap: 10px; }
+        .card h3 span { font-size: 2rem; }
+        .benefit-list { list-style: none; }
+        .benefit-list li { position: relative; padding-left: 25px; margin-bottom: 12px; }
+        .benefit-list li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: bold; }
+        .usage-section { background: var(--dark-green); color: #fff; padding: 80px 10vw; }
+        .usage-section h2 { color: var(--gold); }
+        .usage-section .section-title::after { color: #fff; }
+        .usage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .usage-step { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        .usage-step h4 { color: var(--gold); margin-bottom: 10px; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 600; font-size: 1.1rem; }
+        .note-box { margin-top: 40px; padding: 20px; background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--gold); font-size: 0.95rem; }
+        footer { text-align: center; padding: 40px; background: #fff; color: var(--text-light); }
+        .signature { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark-green); margin-bottom: 10px; font-style: italic; }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px 5vw;
+            }
+            .hero-text, .hero-gallery {
+                flex: 1;
+                width: 100%;
+            }
+            .hero-text { 
+                position: static; /* Tắt chế độ dính trên mobile */
+                margin-bottom: 30px; text-align: center; 
+            }
+            .hero-text h1 { font-size: 2.2rem; }
+            
+            /* Trên mobile chuyển thành 2 cột cho dễ nhìn */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html">Vòng Tròn Xanh</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <span class="subtitle">Set quà An - Thương - Khoẻ</span>
+            <h1>Hũ Chanh Sành Thực Dưỡng Cổ Truyền</h1>
+            <p>Sự giao thoa giữa hương vị thanh thơm tuyệt hảo và bài thuốc dân gian quý giá. Một thức quà xoa dịu vòm họng, làm ấm cơ thể, trọn vẹn yêu thương cho gia đình.</p>
+        </div>
+        
+        <div class="hero-gallery">
+            <div class="gallery-grid">
+                <img src="SanPham/chanh-sanh/anh001.jpg" alt="Set quà Chanh Sành 1" class="gallery-item">
+                <img src="SanPham/chanh-sanh/anh002.jpg" alt="Hũ Chanh Sành 2" class="gallery-item">
+                <img src="SanPham/chanh-sanh/anh003.jpg" alt="Nguyên liệu Chanh Sành 3" class="gallery-item">
+                <img src="SanPham/chanh-sanh/anh004.jpg" alt="Chi tiết lọ 4" class="gallery-item">
+                <img src="SanPham/chanh-sanh/anh005.jpg" alt="Góc chụp khác 5" class="gallery-item">
+                <img src="SanPham/chanh-sanh/anh006.jpg" alt="Set quà tổng quan 6" class="gallery-item">
+            </div>
+        </div>
+    </section>
+    <section class="story-section">
+        <h2 class="section-title">Khởi nguồn từ tình yêu thương</h2>
+        <div class="story-box">
+            "Chanh Sành từ Vườn An được một người bạn thân thiết của Vòng Tròn Xanh phân phối. Chúng mình đã thổi thêm vào đó chút tình yêu, chút sáng tạo để phối hợp thành set quà An - Thương - Khoẻ. <br><br> Cơ duyên đến khi người nhà bị F0 dùng thử sản phẩm mới thấy thật sự tuyệt vời. Vị ngon thanh thơm của chanh gừng, độ chua dịu như ô mai không chỉ xoa dịu vòm họng mà còn làm ấm cả cơ thể. Từ đó, chúng mình ấp ủ mong muốn đưa dòng sản phẩm quà tặng tốt cho sức khỏe này đến tay nhiều người hơn."
+        </div>
+    </section>
+
+    <section class="grid-section">
+        <h2 class="section-title">Tinh hoa trong từng hũ chanh</h2>
+        <div class="info-grid">
+            <div class="card">
+                <h3><span>🍋</span> Nguyên liệu chọn lọc</h3>
+                <p>Lựa chọn từ những trái <strong>chanh đào chính vụ</strong> mọng nước, dày vỏ cho chất lượng tinh dầu tốt nhất trong các khu vườn được bao thầu toàn bộ, cam kết không sử dụng thuốc bảo vệ thực vật.</p>
+                <p style="margin-top:10px;"><strong>Thành phần:</strong> Chanh đào, muối biển, đường phèn nâu tinh khiết, đường thốt nốt thô, mật ong hoa cafe, gừng muối.</p>
+            </div>
+            <div class="card">
+                <h3><span>🏺</span> Quy trình kỳ công</h3>
+                <p>Chanh được <strong>ủ muối thực dưỡng trong chum sành từ 2 năm tuổi trở lên</strong>. Đợi đến khi chanh ngậm muối no đủ, giảm hết tính âm mới được mang ra sấy và tiếp tục ủ với các vị khác theo công thức gia truyền cổ xưa.</p>
+            </div>
+            <div class="card">
+                <h3><span>🛡️</span> Công dụng diệu kỳ</h3>
+                <ul class="benefit-list">
+                    <li>Tiêu đờm, phòng và chữa viêm họng đặc biệt nhanh.</li>
+                    <li>Tăng đề kháng tự nhiên, dưỡng da hồng hào.</li>
+                    <li>Giải cảm, giảm sốt rõ rệt, bù điện giải khi nắng nóng.</li>
+                    <li>Làm ấm thận, tăng dương khí cho cơ thể.</li>
+                    <li>Kích thích tiêu hóa, giảm đầy hơi, kiềm hóa dịch vị dạ dày.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="usage-section">
+        <h2 class="section-title">Cẩm nang sử dụng</h2>
+        <p style="text-align: center; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Hũ chanh có vị ô mai thơm ngon, các bé rất thích dùng. Giao mùa dễ nhiễm virus, mỗi nhà đều nên có 1 hũ Chanh Sành.</p>
+        <div class="usage-grid">
+            <div class="usage-step">
+                <h4>Phòng bệnh & Tăng đề kháng</h4>
+                <p>Ngày 2 lần (sáng, tối). Mỗi lần 1 thìa cafe nhỏ. Uống trực tiếp hoặc pha với 200ml nước ấm.</p>
+            </div>
+            <div class="usage-step">
+                <h4>Khi ho, viêm họng, có đờm</h4>
+                <p>Dùng 4-5 lần/ngày, cách nhau 2-3 tiếng. Ngậm thêm 1/3 miếng chanh. Giảm đau họng nhanh chóng.</p>
+            </div>
+            <div class="usage-step">
+                <h4>Bù điện giải khi sốt</h4>
+                <p>Pha 1-2 thìa nước chanh với 200ml nước ấm uống thay phiên. Ngậm 1 miếng chanh x 2 lần/ngày.</p>
+            </div>
+            <div class="usage-step">
+                <h4>Dành cho trẻ (từ 18 tháng)</h4>
+                <p>Nhúng thìa vào chanh, cho nước chảy hết và cho bé nhấm nháp phần dính lại trên thìa để thử nghiệm trước.</p>
+            </div>
+        </div>
+        <div class="note-box">
+            <strong>Bảo quản & Lưu ý:</strong> Để nơi thoáng mát, nhiệt độ phòng. Sản phẩm để được 5-6 năm. Trẻ dưới 18 tháng cần tham khảo ý kiến bác sĩ. Dùng được cho bệnh nhân ung thư, tiểu đường với liều lượng kiểm soát.
+        </div>
+    </section>
+
+    <footer>
+        <div class="signature">Thật nhiều an lành yêu thương</div>
+        <p>© 2024 Vòng Tròn Xanh - Lan tỏa tinh hoa sản phẩm Việt.</p>
+    </footer>
+
+</body>
+</html>

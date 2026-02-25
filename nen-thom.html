@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Sưu Tập Nến Thơm - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        /* CSS riêng cho giao diện Tạp chí (Magazine Layout) */
+        .lookbook-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .zigzag-item {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 100px; /* Khoảng cách lớn để tạo không gian thở */
+        }
+
+        /* Đảo ngược vị trí cho các mục chẵn (Ảnh phải, Chữ trái) */
+        .zigzag-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .zigzag-img {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .zigzag-img img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 1s ease;
+            display: block;
+        }
+
+        .zigzag-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .zigzag-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .scent-notes {
+            font-size: 0.9rem;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .scent-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--dark-green);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .scent-desc {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Phần Thông tin chi tiết ở cuối trang */
+        .product-specs {
+            background-color: var(--white);
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            padding: 60px 20px;
+            margin-top: 50px;
+        }
+
+        .specs-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .spec-item h3 {
+            font-size: 1.2rem;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .spec-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .spec-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-green);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .zigzag-item, .zigzag-item:nth-child(even) {
+                flex-direction: column; /* Trên điện thoại sẽ tự xếp dọc ảnh trên chữ dưới */
+                gap: 30px;
+                margin-bottom: 60px;
+                text-align: center;
+            }
+            .specs-grid {
+                grid-template-columns: 1fr; /* Thông số xếp 1 cột trên mobile */
+                gap: 30px;
+            }
+            .scent-name { font-size: 2.2rem; }
+            .zigzag-img img { height: 350px; }
+        }
+    </style>
+</head>
+<body class="bg-cream">
+
+    <header style="padding: 20px 50px; background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;">
+        <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: bold; color: var(--dark-green);">
+            <a href="index.html" style="text-decoration: none; color: inherit;">Vòng Tròn Xanh</a>
+        </div>
+        <nav>
+            <a href="index.html" style="text-decoration: none; color: var(--text-dark); font-weight: 500;">Về Trang Chủ</a>
+        </nav>
+    </header>
+
+    <section class="section-padding" style="padding-bottom: 20px; text-align: center;">
+        <div class="container">
+            <h1 class="main-title mb-30">Hương Thơm Chữa Lành</h1>
+            <p class="description max-w-800" style="font-size: 1.15rem;">
+                Tạm gác lại những ồn ào vội vã, hãy để bộ sưu tập nến thơm thủ công của Vòng Tròn Xanh dẫn dắt bạn vào một không gian của sự bình yên. Mỗi nốt hương là một liệu pháp xoa dịu tâm hồn, khơi gợi những cảm xúc thuần khiết nhất.
+            </p>
+        </div>
+    </section>
+
+    <section class="lookbook-container">
+        
+        <div class="zigzag-item hidden">
+            <div class="zigzag-img">
+                <img src="SanPham/nen/anh001.JPG" alt="Nến thơm Woody">
+            </div>
+            <div class="zigzag-content">
+                <span class="scent-notes">Hương Gỗ Trầm Ấm</span>
+                <h2 class="scent-name">Woody</h2>
+                <p class="scent-desc">Mang lại cảm giác vững chãi và tĩnh lặng như đang bước giữa một khu rừng nguyên sinh ngập tràn ánh nắng. Sự pha trộn hoàn hảo của gỗ đàn hương, tuyết tùng và một chút rêu phong, giúp xoa dịu tâm trí và đưa bạn vào trạng thái thư giãn sâu.</p>
+            </div>
+        </div>
+
+        <div class="zigzag-item hidden">
+            <div class="zigzag-img">
+                <img src="SanPham/nen/anh002.JPG" alt="Nến thơm Iris">
+            </div>
+            <div class="zigzag-content">
+                <span class="scent-notes">Hương Hoa Thanh Tao</span>
+                <h2 class="scent-name">Iris</h2>
+                <p class="scent-desc">Đại diện cho nét quyến rũ mềm mại và sang trọng. Hương hoa Diên vĩ nhẹ nhàng lan tỏa mang theo một chút phấn dịu ngọt, tạo nên một không gian lãng mạn, nữ tính và vô cùng tinh tế. Mùi hương lý tưởng cho những buổi tối tự thưởng cho bản thân.</p>
+            </div>
+        </div>
+
+        <div class="zigzag-item hidden">
+            <div class="zigzag-img">
+                <img src="SanPham/nen/anh003.JPG" alt="Nến thơm Lotus">
+            </div>
+            <div class="zigzag-content">
+                <span class="scent-notes">Hương Sen Thuần Khiết</span>
+                <h2 class="scent-name">Lotus</h2>
+                <p class="scent-desc">Gợi nhớ sự thanh bình, mộc mạc của làng quê Việt Nam trong sương sớm. Hương sen thoang thoảng, mát mẻ và thanh tao giúp thanh lọc không khí, xua tan muộn phiền và mang lại nguồn năng lượng an lành, tích cực cho ngày mới.</p>
+            </div>
+        </div>
+
+        <div class="zigzag-item hidden">
+            <div class="zigzag-img">
+                <img src="SanPham/nen/anh004.JPG" alt="Nến thơm Tea Fresh">
+            </div>
+            <div class="zigzag-content">
+                <span class="scent-notes">Hương Trà Sảng Khoái</span>
+                <h2 class="scent-name">Tea Fresh</h2>
+                <p class="scent-desc">Đánh thức mọi giác quan bằng nốt hương trà xanh trong trẻo hòa quyện cùng chút the mát của sương mai. Một mùi hương tràn đầy sinh khí, tươi mới và trong trẻo, rất phù hợp để làm mới không gian làm việc hoặc bắt đầu một buổi sáng đầy hứng khởi.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="product-specs hidden">
+        <h2 class="section-title text-center" style="margin-bottom: 40px; font-size: 2rem;">Thông Tin Chi Tiết</h2>
+        <div class="specs-grid">
+            
+            <div class="spec-item">
+                <div class="spec-icon">🌿</div>
+                <h3>Chất Liệu An Toàn</h3>
+                <p>100% sáp đậu nành và sáp ong tự nhiên. Sử dụng bấc cotton không chì, không tạo khói đen. Tinh dầu nhập khẩu cao cấp, an toàn tuyệt đối cho sức khỏe và thân thiện với môi trường.</p>
+            </div>
+
+            <div class="spec-item">
+                <div class="spec-icon">📏</div>
+                <h3>Kích Thước & Dung Tích</h3>
+                <p>Trọng lượng sáp: <strong>200g</strong>.<br> Thời gian đốt liên tục: <strong>40 - 45 giờ</strong>. <br>Đựng trong hũ gốm/thủy tinh chịu nhiệt, thiết kế tối giản, dễ dàng tái sử dụng làm đồ trang trí sau khi dùng hết.</p>
+            </div>
+
+            <div class="spec-item">
+                <div class="spec-icon">✨</div>
+                <h3>Công Dụng Vượt Trội</h3>
+                <p>Khử mùi không gian hiệu quả. Lan tỏa hương thơm giúp thư giãn hệ thần kinh, giảm căng thẳng, hỗ trợ tập trung khi làm việc và cải thiện chất lượng giấc ngủ sâu hơn.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="background: var(--dark-green); color: white; text-align: center; padding: 20px;">
+        <p>© 2026 Vòng Tròn Xanh. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

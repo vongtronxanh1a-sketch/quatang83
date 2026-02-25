@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Quà Hoa Của Thu - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= GIAO DIỆN POSTER DỊU MẮT & NỔI BẬT ================= */
+        .poster-section {
+            background: #F6F4EE; /* Màu nền be nhạt/kem rất dịu mắt */
+            padding: 60px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .poster-card {
+            background: #FFFFFF;
+            max-width: 1100px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06); /* Bóng đổ xám nhẹ, tinh tế hơn */
+            display: flex;
+            position: relative;
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: 25px;
+            right: -35px;
+            background: #C6463A; /* Đỏ gạch sang trọng, không chói */
+            color: white;
+            padding: 8px 40px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: rotate(45deg);
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(198, 70, 58, 0.2);
+        }
+
+        /* Cột hình ảnh */
+        .poster-img-container {
+            flex: 1.2;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .poster-img {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            position: relative;
+        }
+
+        .poster-img img#mainPosterImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 3/4; 
+            display: block;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        /* Bộ sưu tập ảnh nhỏ */
+        .poster-thumbnails {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 15px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            z-index: 5;
+        }
+
+        .thumb-poster {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .thumb-poster:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        .thumb-poster.active {
+            border-color: #2F4F3D; /* Đổi viền sang xanh đậm thay vì vàng */
+            opacity: 1;
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(47, 79, 61, 0.2);
+        }
+
+        /* Cột nội dung */
+        .poster-content {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .collection-name {
+            color: #8A7346; /* Vàng nâu trầm ấm */
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .poster-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            color: #1A3626; /* Xanh lá cực đậm, tương phản cao */
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #EFEFEF;
+        }
+
+        .price-old {
+            font-size: 1.2rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .price-new {
+            font-size: 2.2rem;
+            color: #C6463A; /* Đỏ gạch */
+            font-weight: 700;
+        }
+
+        .price-note {
+            background: #FFF8E7;
+            color: #B58416;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .combo-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .combo-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .combo-list li::before {
+            content: '✓'; /* Dùng dấu check thanh lịch thay vì icon hoa */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #4A7C59;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* KHỐI HIGHLIGHT MỚI: TẬP TRUNG THÔNG ĐIỆP */
+        .highlight-box {
+            background: linear-gradient(120deg, #F0F7F4 0%, #E6F2ED 100%); /* Nền xanh mint cực nhạt */
+            border-left: 5px solid #4A7C59;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .highlight-box p {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-weight: 500;
+            color: #2F4F3D; /* Xanh lá đậm */
+            font-size: 1.1rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .highlight-quote-mark {
+            font-family: Georgia, serif;
+            font-size: 1.5rem;
+            color: #4A7C59;
+            margin-right: 5px;
+        }
+
+        .commitment {
+            font-weight: 600;
+            color: #1A3626;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.05rem;
+            background: #F9F9F9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .btn-poster {
+            background: #2F4F3D;
+            color: white;
+            display: block;
+            text-align: center;
+            padding: 18px;
+            border-radius: 8px; /* Đổi thành nút vuông bo góc cho hiện đại */
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-poster:hover {
+            background: #1A3626;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(47, 79, 61, 0.25);
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 992px) {
+            .poster-card { flex-direction: column; }
+            .poster-img-container { height: auto; }
+            .promo-badge { right: -40px; top: 30px; }
+            .poster-title { font-size: 2.8rem; }
+            .poster-content { padding: 30px 20px; }
+            .highlight-box { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header style="padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: absolute; width: 100%; top: 0; z-index: 1000;">
+        <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: bold; color: var(--dark-green);">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">Vòng Tròn Xanh</a>
+        </div>
+        <nav>
+            <a href="../products.html" style="text-decoration: none; color: var(--dark-green); font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.7); padding: 5px 15px; border-radius: 20px;">← Trở về</a>
+        </nav>
+    </header>
+
+    <section class="poster-section">
+        <div class="poster-card">
+            
+            <div class="promo-badge">HOT DEAL</div>
+
+            <div class="poster-img-container">
+                <div class="poster-img">
+                    <img id="mainPosterImage" src="anh001.jpg" alt="Set quà Hoa Của Thu">
+                    
+                    <div class="poster-thumbnails">
+                        <img src="anh001.jpg" class="thumb-poster active" onclick="changePosterImage(this, 'anh001.jpg')">
+                        
+                        <img src="anh002.jpg" class="thumb-poster" onclick="changePosterImage(this, 'anh002.jpg')">
+                        
+                        <img src="anh003.jpg" class="thumb-poster" onclick="changePosterImage(this, 'anh003.jpg')">
+                        
+                        <img src="anh004.jpg" class="thumb-poster" onclick="changePosterImage(this, 'anh004.jpg')">
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-content">
+                <span class="collection-name">Bộ Sưu Tập Giới Hạn</span>
+                <h1 class="poster-title">Hoa của Thu</h1>
+                
+                <div class="price-box">
+                    <span class="price-old">490.000đ</span>
+                    <span class="price-new">390.000đ</span>
+                    <span class="price-note">Ưu đãi tháng 2 💛</span>
+                </div>
+
+                <ul class="combo-list">
+                    <li><strong>Cốc giữ nhiệt inox 316:</strong> Giữ nhiệt xuất sắc, an toàn cho sức khỏe.</li>
+                    <li><strong>Khăn lụa (70x70cm):</strong> Họa tiết hoa 4 góc trang nhã.</li>
+                    <li><strong>Thiệp nghệ thuật:</strong> Thiết kế đồng bộ, tinh tế.</li>
+                    <li><strong>Hộp & Túi xách:</strong> Sang trọng, sẵn sàng để trao tặng.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><span class="highlight-quote-mark">“</span>Điểm đặc biệt là toàn bộ họa tiết được <strong>thiết kế độc quyền từ ấn phẩm màu nước vẽ tay</strong>, đồng bộ từ khăn đến cốc và bao bì. Một món quà tinh tế, mang đậm dấu ấn riêng và hoàn toàn khác biệt so với các set quà đại trà trên thị trường.</p>
+                </div>
+
+                <div class="commitment">
+                    ✨ Mẫu quà thiết thực, sử dụng lâu dài. Cam kết nhận hàng ưng ý! ✨
+                </div>
+
+                <a href="https://zalo.me/0976152886" target="_blank" class="btn-poster">
+                    Giữ Ưu Đãi & Đặt Hàng Qua Zalo
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        let autoPlayInterval;
+        let currentIndex = 0;
+        const thumbnails = document.querySelectorAll('.thumb-poster');
+
+        function changePosterImage(thumbnailElement, imageUrl) {
+            const mainImg = document.getElementById('mainPosterImage');
+            mainImg.style.opacity = 0; 
+            
+            setTimeout(() => {
+                mainImg.src = imageUrl;
+                mainImg.style.opacity = 1; 
+            }, 200);
+
+            thumbnails.forEach(t => t.classList.remove('active'));
+            thumbnailElement.classList.add('active');
+
+            for(let i = 0; i < thumbnails.length; i++) {
+                if(thumbnails[i] === thumbnailElement) {
+                    currentIndex = i;
+                    break;
+                }
+            }
+            resetAutoPlay();
+        }
+
+        function nextImage() {
+            currentIndex++;
+            if (currentIndex >= thumbnails.length) {
+                currentIndex = 0; 
+            }
+            thumbnails[currentIndex].click();
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextImage, 3500); // 3.5 giây chuyển 1 lần
+        }
+
+        resetAutoPlay();
+    </script>
+</body>
+</html>
