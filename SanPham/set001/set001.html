@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Set quà Khăn Khuê Tú đơn giản - Vòng Tròn Xanh</title>
+    <title>Khăn Khuê Tú - Vòng Tròn Xanh</title>
     <link rel="stylesheet" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,48 +24,41 @@
         <div class="product-detail-grid">
             
             <div class="product-gallery">
-                <img id="mainImage" src="anh001.jpg" alt="Khăn Lụa Tơ Tằm Thượng Hạng" class="main-img">
+                <img id="mainImage" src="anh (2).jpg" alt="Khăn Lụa Tơ Tằm Thượng Hạng" class="main-img">
                 
-                <div class="product-gallery">    
-    <div class="thumbnail-slider-wrapper">
-        <button class="slider-btn prev" onclick="moveSlider(-1)">❮</button>
-        <div class="thumbnail-list-container">
-            <div class="thumbnail-list" id="thumbList">
-                <img src="anh001.jpg" class="thumb active" onclick="changeImage(this)">
-                <img src="anh002.jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (4).jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh004.jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh005.jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (1).jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (2).jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (3).jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (5).jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (6).jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (7).jpg" class="thumb" onclick="changeImage(this)">
-                <img src="anh00 (8).jpg" class="thumb" onclick="changeImage(this)">
-            </div>
-        </div>
-        <button class="slider-btn next" onclick="moveSlider(1)">❯</button>
-    </div>
-</div>
+                <div class="thumbnail-list" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+                    <img src="anh (2).jpg" class="thumb active" onclick="changeImage(this)">
+                    <img src="anh (5).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (3).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (4).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (1).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (6).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (7).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (8).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (9).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (10).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (11).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (12).jpg" class="thumb" onclick="changeImage(this)">
+                </div>
             </div>
 
             <div class="product-info-detail">
                 <div class="product-meta">
+                    <span class="product-category">Khăn Khuê Tú</span>
                     <span class="product-code">Mã: VTX-001</span>
                 </div>
                 
-                <h1 class="detail-title">Khăn Khuê Tú</h1>
+                <h1 class="detail-title">Set Khăn Poly Vuông Basic</h1>
                 <p class="detail-price">190.000 ₫</p>
                 
                 <div class="detail-description">
                     <p>Vẫn là set quốc dân - quà trọn bộ khăn túi thiệp hộp mà chỉ 1xx - xx tinh tế nhỏ xinh In tặng thiệp, hộp logo cho Doanh Nghiệp đã sẵn sàng. Thương mời quý khách.</p>
                     <ul>
-                        <li><strong>Chất liệu:</strong> 100% chất liệu Latin in cao cấp.</li>
-                        <li><strong>Kích thước:</strong> Size cơ bản 70x70 cm.</li>
+                        <li><strong>Chất liệu:</strong> 100% Chất liệu Latin in cao cấp.</li>
+                        <li><strong>Kích thước:</strong> 70*70 cm.</li>
                         <li><strong>Thiết kế:</strong> Thiết kế nghệ thuật riêng biệt.</li>
                         <li><strong>Đóng gói:</strong> Hộp quà Vòng Tròn Xanh, kèm thiệp viết tay và túi xách sang trọng, phù hợp tặng ngày 8/3.</li>
-                        <li><strong>Tư vấn thêm các mẫu khăn khác:</strong> <a href="../../khan-khue-tu.html" class="explore-candle-link">Khám phá các mẫu khăn Khuê Tú</a></li>
+                        <li><strong>Tư vấn thêm các mẫu khăn khác:</strong> <a href="../../khan-khue-tu.html" class="explore-candle-link">Khám phá các mẫu khăn Khuê Tú</a></li>                 
                     </ul>
                 </div>
 
@@ -86,20 +79,17 @@
     </section>
 
     <footer style="background: var(--dark-green); color: white; text-align: center; padding: 20px;">
-        <p>© 2024 Vòng Tròn Xanh. All rights reserved.</p>
+        <p>© 2026 Vòng Tròn Xanh. All rights reserved.</p>
     </footer>
 
     <script>
         // Hàm thay đổi ảnh lớn khi click vào ảnh nhỏ
         function changeImage(element) {
-            // Đổi nguồn ảnh chính
             document.getElementById('mainImage').src = element.src;
-            // Cập nhật viền cho ảnh nhỏ đang được chọn
             let thumbs = document.querySelectorAll('.thumb');
             thumbs.forEach(t => t.classList.remove('active'));
             element.classList.add('active');
         }
     </script>
-    <script src="../../script.js"></script>
 </body>
 </html>
