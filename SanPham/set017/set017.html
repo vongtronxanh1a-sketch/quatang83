@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khăn Cao Cấp - Vòng Tròn Xanh</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cream">
+
+    <header style="padding: 20px 50px; background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;">
+        <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: bold; color: var(--dark-green);">
+            <a href="../../index.html" style="text-decoration: none; color: inherit;">Vòng Tròn Xanh</a>
+        </div>
+        <nav>
+            <a href="../../products.html" style="text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s;">← Quay lại danh sách</a>
+        </nav>
+    </header>
+
+    <section class="section-padding container">
+        <div class="product-detail-grid">
+            
+            <div class="product-gallery">
+                <img id="mainImage" src="anh (1).jpg" alt="Khăn Lụa Tơ Tằm Thượng Hạng" class="main-img">
+                
+                <div class="thumbnail-list">
+                    <img src="anh (1).jpg" class="thumb active" onclick="changeImage(this)">
+                    <img src="anh (2).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (3).jpg" class="thumb" onclick="changeImage(this)">
+                    <img src="anh (4).jpg" class="thumb" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <div class="product-info-detail">
+                <div class="product-meta">
+                    <span class="product-code">Mã: VTX-017</span>
+                </div>
+                
+                <h1 class="detail-title">Khăn Cao Cấp</h1>
+                <p class="detail-price">1.000.000 ₫</p>
+                
+                <div class="detail-description">
+                    <p>Có những món quà không chỉ để ngắm nhìn, mà còn để cảm nhận bằng cả tâm hồn. Khăn tơ tằm tại Vòng Tròn Xanh chính là một món quà như thế – nơi những sợi tơ thiên nhiên được dệt nên bằng sự tỉ mỉ và lòng trân quý cái đẹp.</p>
+                    <ul>
+                        <li><strong>Chạm vào sự thuần khiết:</strong> Được dệt từ 100% tơ tằm tự nhiên, mỗi chiếc khăn mang trong mình độ óng ả đặc trưng và sự mềm mượt 'như sương như hoa'. Cảm giác mát lạnh khi vừa chạm vào và ấm áp khi quàng lên cổ tạo nên một sự vỗ về dịu dàng cho làn da.</li>
+                        <li><strong>Họa tiết độc bản:</strong> Những nhành cây, đóa sen hay hoa cỏ được thể hiện sắc nét, mang hơi thở của nghệ thuật truyền thống nhưng vẫn đầy hơi hướng hiện đại, giúp phái đẹp tự tin tỏa sáng dù là khi dạo phố hay trong những buổi tiệc sang trọng.</li>
+                        <li><strong>Giá trị của sự bền vững:</strong> Đúng như tinh thần của cái tên Vòng Tròn Xanh, chúng mình ưu tiên chất liệu thân thiện với môi trường, bền bỉ cùng thời gian, để mỗi chiếc khăn không chỉ là phụ kiện thời trang mà còn là một kỷ niệm vô giá.</li>
+                    </ul>
+                    <p>Giữa bộn bề cuộc sống, tặng nhau một chiếc khăn tơ tằm là tặng đi sự quan tâm tinh tế, là lời hứa bảo bọc và nâng niu. Đây chắc chắn là mảnh ghép hoàn hảo cho set quà tri ân những người phụ nữ quan trọng trong dịp 8/3 này."</p>
+                </div>
+
+                <div class="detail-actions">
+                    <a href="https://zalo.me/0976152886" target="_blank" class="btn btn-primary btn-large">💬 Đặt Hàng Qua Zalo</a>
+                    <p class="support-text">Hoặc gọi Hotline: <strong>097 615 28 86</strong></p>
+                </div>
+                
+                <div class="guarantee-box">
+                    <p>✨ <strong>Cam kết từ Vòng Tròn Xanh:</strong></p>
+                    <p>✔️ Giao hàng hỏa tốc nội thành Hà Nội.</p>
+                    <p>✔️ Xem hàng trước khi thanh toán.</p>
+                    <p>✔️ Đổi trả miễn phí nếu sản phẩm không đúng mô tả.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="background: var(--dark-green); color: white; text-align: center; padding: 20px;">
+        <p>© 2026 Vòng Tròn Xanh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Hàm thay đổi ảnh lớn khi click vào ảnh nhỏ
+        function changeImage(element) {
+            // Đổi nguồn ảnh chính
+            document.getElementById('mainImage').src = element.src;
+            // Cập nhật viền cho ảnh nhỏ đang được chọn
+            let thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+    <script src="../../script.js"></script>
+</body>
+</html>
